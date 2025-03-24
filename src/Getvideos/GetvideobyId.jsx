@@ -19,7 +19,7 @@ const GetvideobyId = function({title,description,video_url}){
         if(video==null){
             const fetchData = async () => {
                 try {
-                    //console.log(video_id)
+                    console.log(video_id);
                     const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/videos/videoid/${video_id}`);
 
                     //console.log(response.data.statusCode)
@@ -34,7 +34,7 @@ const GetvideobyId = function({title,description,video_url}){
         }
         const getUserData = async function(){
             try {
-                const result = await axios.get(`/subs/subscriber-list/${video.user_id}`)
+                const result = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/subs/subscriber-list/${video.user_id}`)
                 console.log(result.data.statusCode);
                 setChannel(result.data.statusCode)
             } catch (err) {

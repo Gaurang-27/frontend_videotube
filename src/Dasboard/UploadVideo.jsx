@@ -64,6 +64,7 @@ function UploadVideo() {
 
             const response = await axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/videos/publish-video`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
+                withCredentials : true
             });
             
 

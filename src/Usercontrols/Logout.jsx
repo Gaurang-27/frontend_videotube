@@ -21,7 +21,9 @@ const Logout = () => {
         }
 
       // Send logout request to the backend
-      await axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/users/logout`, { refreshToken });
+      await axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/users/logout`, { refreshToken },{
+        withCredentials:true
+      });
 
 
       localStorage.removeItem("accessToken");
