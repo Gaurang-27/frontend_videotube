@@ -20,7 +20,8 @@ const GetvideobyId = function({title,description,video_url}){
             const fetchData = async () => {
                 try {
                     //console.log(video_id)
-                    const response = await axios.get(`/videos/videoid/${video_id}`);
+                    const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/videos/videoid/${video_id}`);
+
                     //console.log(response.data.statusCode)
                     setvideo(response.data.statusCode)
                 } catch (err) {

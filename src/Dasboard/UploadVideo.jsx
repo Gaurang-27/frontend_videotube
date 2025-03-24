@@ -62,9 +62,10 @@ function UploadVideo() {
             setError(null);
             setSuccessMessage("");
 
-            const response = await axios.post("/videos/publish-video", formData, {
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/videos/publish-video`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+            
 
             setSuccessMessage("Video uploaded successfully!");
             setTitle("");

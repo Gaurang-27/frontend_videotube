@@ -10,7 +10,8 @@ const SubsBar = () => {
   useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        const response = await axios.get("/subs/subscribedto-list"); // Adjust endpoint as needed
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/subs/subscribedto-list`);
+        // Adjust endpoint as needed
         console.log(response)
         setSubscriptions(response.data.statusCode);
       } catch (err) {
