@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Redux/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginUser = () => {
 
   const dispatch = useDispatch()
+  const navigate =useNavigate()
 
 
   const [formData, setFormData] = useState({
@@ -36,6 +38,8 @@ const LoginUser = () => {
       localStorage.setItem("accessToken",response.data.data.accessToken)
 
       setMessage("Login successful!");
+
+      setTimeout(() => navigate('/'), 1000);
     } catch (error) {
       console.error("Login error:", error);
       setMessage("Invalid email or password.");

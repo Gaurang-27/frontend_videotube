@@ -9,7 +9,7 @@ const Logout = () => {
   const dispatch = useDispatch()
 
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // For redirection
+  //const navigate = useNavigate(); // For redirection
 
   const handleLogout = async () => {
     try {
@@ -35,7 +35,7 @@ const Logout = () => {
       setMessage("Logout successful!");
 
       // Redirect to login page after 2 seconds
-      setTimeout(() => navigate("/login"), 2000);
+      //setTimeout(() => navigate("/login"), 2000);
       
     } catch (error) {
       console.error("Logout failed:", error);
