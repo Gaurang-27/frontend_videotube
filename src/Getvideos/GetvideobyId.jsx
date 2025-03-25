@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink , useLocation, useParams} from "react-router-dom";
 import axios from "axios";
 import SubscribeButton from "../Usercontrols/SubscribeButton";
+import Comments from "../Comments/Comments";
 
 
 
@@ -57,6 +58,7 @@ const GetvideobyId = function({title,description,video_url}){
             <p>Channel Name : {channel.user_fullName}</p>
             <p>Number of Subscribers : {channel.subscribers.length}</p>
             <SubscribeButton channel_id={channel.user_id}/>
+            <Comments videoId={video.video_id}></Comments>
         </div>
     )
 }
