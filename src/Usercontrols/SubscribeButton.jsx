@@ -45,14 +45,14 @@ const SubscribeButton = ({ channel_id }) => {
     return (
         <button 
             onClick={handleSubscribe} 
-            disabled={loading || user==null ||channel_id===user.user_id}
+            disabled={loading || user==null ||channel_id==user.user_id}
             style={{
                 padding: "10px 20px",
                 backgroundColor: subscribed ? "gray" : "red",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                cursor: loading || user==null ||channel_id===user.user_id? "not-allowed" : "pointer",
+                cursor: loading || user==null ||channel_id==user.user_id? "not-allowed" : "pointer",
                 fontSize: "16px"
             }}
         >
