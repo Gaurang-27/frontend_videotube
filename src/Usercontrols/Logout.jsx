@@ -44,18 +44,22 @@ const Logout = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <button onClick={handleLogout} style={styles.button}>Logout</button>
-      {message && <p style={styles.message}>{message}</p>}
-    </div>
+    <div>
+  <button 
+    onClick={handleLogout} 
+    className="text-white font-semibold bg-blue-600 hover:bg-blue-700 px-4 py-1 pb-2 rounded-md transition duration-300"
+  >
+    Logout
+  </button>
+  {message && (
+    <p className="text-red-500 text-sm font-medium absolute top-12">
+      {message}
+    </p>
+  )}
+</div>
+
   );
 };
 
-// Styles
-const styles = {
-  container: { textAlign: "center", marginTop: "20px" },
-  button: { padding: "10px 20px", fontSize: "18px", background: "#FF5733", color: "#fff", border: "none", cursor: "pointer", borderRadius: "5px" },
-  message: { marginTop: "10px", fontSize: "16px", color: "green" },
-};
 
 export default Logout;

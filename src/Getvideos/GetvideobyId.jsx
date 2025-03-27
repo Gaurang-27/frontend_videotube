@@ -3,6 +3,7 @@ import { NavLink , useLocation, useParams} from "react-router-dom";
 import axios from "axios";
 import SubscribeButton from "../Usercontrols/SubscribeButton";
 import Comments from "../Comments/Comments";
+import Header from "../Homepage/Header";
 
 
 
@@ -51,15 +52,39 @@ const GetvideobyId = function({title,description,video_url}){
     if(!video || !channel) return <p>loading...</p>
 
     return (
-        <div>
-            <video src={video.video_url} controls autoPlay type="video/mp4"></video>
-            <h2>{video.title}</h2>
-            <p>{video.description}</p>
-            <p>Channel Name : {channel.user_fullName}</p>
-            <p>Number of Subscribers : {channel.subscribers.length}</p>
-            <SubscribeButton channel_id={channel.user_id}/>
-            <Comments videoId={video.video_id}></Comments>
+      <>
+      <Header className={""}/>
+        <div className="pt-5">
+            <div className="w-[90%] lg:w-[85%] xl:w-[80%] mx-auto bg-gray-800 shadow-lg rounded-lg p-6">
+        <div className="w-full aspect-[16/9] bg-black overflow-hidden rounded-lg">
+          <video
+            src={video.video_url}
+            controls
+            autoPlay
+            className="w-full h-full object-contain"
+            type="video/mp4"
+          ></video>
         </div>
+        <h2 className="text-2xl font-semibold mt-4 text-white">{video.title}</h2>
+        <p className="text-white text-lg">{video.description}</p>
+        <p className="text-gray-300 font-medium text-lg">
+          Channel Name: <span className="font-semibold">{channel.user_fullName}</span>
+        </p>
+        <p className="text-gray-300 font-medium text-lg">
+          Subscribers: <span className="font-semibold">{channel.subscribers.length}</span>
+        </p>
+        <div className="mt-4">
+          <SubscribeButton channel_id={channel.user_id} />
+        </div>
+        <div className="mt-6">
+          <Comments videoId={video.video_id} />
+        </div>
+      </div>
+        </div>
+        </>
+      
+      
+
     )
 }
 

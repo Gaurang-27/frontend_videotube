@@ -55,38 +55,83 @@ const Registeruser = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Register</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} required style={styles.input} />
-        <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required style={styles.input} />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required style={styles.input} />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required style={styles.input} />
-        <input type="file" accept="image/*" onChange={handleFileChange} style={styles.fileInput} />
-        <button type="submit" style={styles.button}>Register</button>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+  <div className="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-6">
+    <h2 className="text-2xl font-semibold text-center text-gray-100 mb-4">Register</h2>
 
-      {/* Show preview of uploaded avatar */}
-      {formData.avatar && (
-        <div style={styles.preview}>
-          <h4>Avatar Preview:</h4>
-          <img src={URL.createObjectURL(formData.avatar)} alt="Avatar Preview" style={styles.image} />
-        </div>
-      )}
-    </div>
+    {message && <p className="text-red-400 text-center mb-4">{message}</p>}
+
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        type="text"
+        name="fullName"
+        placeholder="Full Name"
+        value={formData.fullName}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={formData.username}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <div className="w-full">
+        <label className="block text-gray-300 text-sm mb-1">Upload Avatar</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="w-full text-gray-300 bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 cursor-pointer file:bg-blue-500 file:text-white file:py-1 file:px-3 file:rounded-lg hover:file:bg-blue-600"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+      >
+        Register
+      </button>
+    </form>
+
+    {/* Avatar Preview */}
+    {formData.avatar && (
+      <div className="mt-6 text-center">
+        <h4 className="text-gray-300 text-lg font-medium">Avatar Preview:</h4>
+        <img
+          src={URL.createObjectURL(formData.avatar)}
+          alt="Avatar Preview"
+          className="mt-2 w-24 h-24 rounded-full border-2 border-gray-500 mx-auto object-cover"
+        />
+      </div>
+    )}
+  </div>
+</div>
+
   );
 };
 
-// Styles
-const styles = {
-  container: { maxWidth: "400px", margin: "auto", textAlign: "center" },
-  form: { display: "flex", flexDirection: "column", gap: "10px" },
-  input: { padding: "10px", fontSize: "16px", borderRadius: "5px", border: "1px solid #ccc" },
-  fileInput: { marginTop: "10px" },
-  button: { padding: "10px", fontSize: "18px", borderRadius: "5px", background: "#007BFF", color: "#fff", cursor: "pointer" },
-  preview: { marginTop: "20px" },
-  image: { width: "100px", height: "100px", borderRadius: "50%", objectFit: "cover" },
-};
+
 
 export default Registeruser;

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const SubsBar = () => {
   const [subscriptions, setSubscriptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isLoggedIn = useSelector((state)=>state?.user?.isLoggedIn || false)
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
@@ -25,27 +27,32 @@ const SubsBar = () => {
     fetchSubscriptions();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p>Loading...</p>; 
+  if (error && isLoggedIn) return <p>{error}</p>;
 
   return (
-    <nav className="subscription-bar p-4 bg-gray-600 rounded-md">
-      <h3 className="text-lg font-semibold mb-2">Subscribed Channels</h3>
-      <ul>
-        {subscriptions.map((channel) => (
-          <li key={channel.user_id}>
-            <NavLink 
-              to={`/channel/${channel.user_id}`} 
-              className={({ isActive }) => 
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-            >
-              {channel.fullName}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <nav className="w-1/5 h-screen bg-[rgb(26,26,26)] text-white p-4 fixed left-0 top-20 shadow-lg">
+  <h3 className="text-xl font-semibold mb-4 border-b border-gray-600 pb-2">
+    Subscribed Channels
+  </h3>
+  <ul className="space-y-3">
+    {subscriptions.map((channel) => (
+      <li key={channel.user_id}>
+        <NavLink
+          to={`/channel/${channel.user_id}`}
+          className={({ isActive }) =>
+            `block px-3 py-2 rounded-lg transition-colors duration-300 ${
+              isActive ? "bg-blue-600 text-white font-bold" : "bg-gray-700 hover:bg-gray-600"
+            }`
+          }
+        >
+          {channel.fullName}
+        </NavLink>
+      </li>
+    ))}
+  </ul>
+</nav>
+
   );
 };
 

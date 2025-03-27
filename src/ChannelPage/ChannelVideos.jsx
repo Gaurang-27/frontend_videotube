@@ -45,27 +45,27 @@ const ChannelVideos = function(){
     if(error) return <p>{error}</p>
 
     return(
-        <div>
-            <h2>Video Gallery</h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-                {video.length > 0 ? (
-                    video.map((element, index) => (
-                        <NavLink to={`/${element.video_id}`}>
-                            <img  
-                            src={element.thumbnail_url} 
-                            alt={`Thumbnail ${index + 1}`} 
-                            width="320" 
-                            height="200" 
-                            style={{ borderRadius: "10px", objectFit: "cover" }}
-                        />
-                        </NavLink>
-                    ))
-                ) : (
-                    <p>No videos available</p>
-                )}
-            </div>
-            <SubscribeButton channel_id={user_id}/>
+        <div className="pr-14 pt-20 flex justify-end w-full">
+        <div className="w-3/4 pr-4 pt-6">
+          <div className="grid grid-cols-3 gap-6">
+            {video.length > 0 ? (
+              video.map((element, index) => (
+                <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <img
+                    onClick={() => handleClick(element)}
+                    src={element.thumbnail_url}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-48 object-cover rounded-md cursor-pointer transition-transform duration-300 hover:scale-105"
+                  />
+                  <h3 className="text-lg font-medium mt-2 text-white">{element.title}</h3>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-400 col-span-3">No videos available</p>
+            )}
+          </div>
         </div>
+      </div>
     )
 }
 

@@ -47,40 +47,43 @@ const LoginUser = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <button type="submit" style={styles.button}>Login</button>
-      </form>
-    </div>
+<div className="flex items-center justify-center min-h-screen bg-gray-900">
+  <div className="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-6">
+    <h2 className="text-2xl font-semibold text-center text-gray-100 mb-4">Login</h2>
+
+    {message && <p className="text-red-400 text-center mb-4">{message}</p>}
+
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+      />
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
+
+
+
   );
 };
-
-// Styles
-const styles = {
-  container: { maxWidth: "400px", margin: "auto", textAlign: "center" },
-  form: { display: "flex", flexDirection: "column", gap: "10px" },
-  input: { padding: "10px", fontSize: "16px", borderRadius: "5px", border: "1px solid #ccc" },
-  button: { padding: "10px", fontSize: "18px", borderRadius: "5px", background: "#007BFF", color: "#fff", cursor: "pointer" },
-};
-
 export default LoginUser;

@@ -64,9 +64,9 @@ const VideoComments = ({ videoId }) => {
 
   return (
     <div className="p-4 bg-gray-700 rounded-lg">
-      <h2 className="text-lg font-semibold mb-3">Comments</h2>
+      <h2 className="text-lg font-semibold mb-3 text-white">Comments</h2>
       {loginMessage && <p className="text-red-500 mb-2">{loginMessage}</p>}
-      <form onSubmit={handleCommentSubmit} className="mb-4">
+      <form onSubmit={handleCommentSubmit} className="mb-4 text-white">
         <input
           type="text"
           className="p-2 w-full rounded border border-gray-300"
@@ -85,8 +85,8 @@ const VideoComments = ({ videoId }) => {
         <ul>
           {comments.map((comment) => (
             <li key={comment.comment_id} className="mb-2 p-2 border-b border-gray-300">
-              <p className="font-semibold">{comment.fullName}</p>
-              <p>{comment.comment_text}</p>
+              <p className="font-semibold text-white">{comment.fullName}</p>
+              <p className="text-white">{comment.comment_text }</p>
               {userId === comment.user_id && (
                 <button
                   className="mt-1 p-1 bg-red-500 text-white rounded"
