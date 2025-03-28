@@ -14,7 +14,7 @@ const Header = function ({className}) {
       <div className={`bg-[rgb(26,26,26)] text-white py-4 px-6 ${className} top-0 left-0 w-full `}>
   <ul className="flex items-center justify-between w-full">
     {/* Left side - Brand */}
-    <li className="text-2xl font-bold">Videotube</li>
+    <li className="text-2xl font-bold"><NavLink to='/'>Videotube</NavLink></li>
 
     {/* Right side - Account and Login/Logout */}
     <div className="flex items-center space-x-6">

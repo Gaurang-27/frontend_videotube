@@ -10,6 +10,7 @@ import ChannelVideos from './ChannelPage/ChannelVideos';
 import Dashboard from './Dasboard/Dashboard';
 import SubscribersPage from './Dasboard/SubscribersPage';
 import SubscriberCard from './Dasboard/SubscriberCard';
+import UploadVideo from './Dasboard/UploadVideo';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route index element={<SubscriberCard />} />
         <Route path='subscriber-list' element={<SubscribersPage/>}></Route>
       </Route>
+      <Route path='upload-video' element={<UploadVideo/>}></Route>
       
     </>
   )

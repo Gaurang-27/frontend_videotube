@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Registeruser = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const Registeruser = () => {
   });
 
   const [message, setMessage] = useState(""); // For success/error messages
+
+  const navigate= useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,6 +51,9 @@ const Registeruser = () => {
         password: "",
         avatar: null,
       });
+      setTimeout(() => {
+        navigate('/login')
+      }, 1500);
     } catch (error) {
       console.error("Registration error:", error);
       setMessage("Registration failed. Please try again.");

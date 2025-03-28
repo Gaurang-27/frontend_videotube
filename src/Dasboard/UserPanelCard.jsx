@@ -7,28 +7,15 @@ const UserPanelCard = () => {
     if (!user) return <p>User not logged in.</p>;
 
     return (
-        <div style={{
-            border: "1px solid #ddd",
-            borderRadius: "10px",
-            padding: "20px",
-            width: "300px",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            textAlign: "center"
-        }}>
+        <div className=" bg-gray-800 text-white p-8 w-96 rounded-xl shadow-2xl text-center min-h-[300px]">
             <img 
                 src={user.avatar} 
                 alt="User Avatar" 
-                style={{
-                    width: "100px",
-                    height: "100px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    marginBottom: "10px"
-                }} 
+                className="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-gray-600"
             />
-            <h2>{user.username}</h2>
-            <p><strong>Full Name:</strong> {user.fullName}</p>
-            <p><strong>Email:</strong> {user.email}</p>
+            <h2 className="text-2xl font-bold">{user.username}</h2>
+            <p className="text-lg text-gray-300 mt-2"><strong>Full Name:</strong> {user.fullName}</p>
+            <p className="text-lg text-gray-300"><strong>Email:</strong> {user.email}</p>
         </div>
     );
 };

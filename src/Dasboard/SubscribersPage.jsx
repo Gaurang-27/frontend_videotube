@@ -8,14 +8,23 @@ const SubscribersPage = () => {
     console.log(subscribers)
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Subscribers</h1>
-
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+        <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md relative">
+            {/* Close Button */}
+            <button
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl"
+                onClick={() => navigate(-1)}
+            >
+                &times;
+            </button>
+    
+            <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Subscribers</h1>
+    
             {subscribers.length === 0 ? (
-                <p className="text-gray-600">No subscribers available.</p>
+                <p className="text-gray-600 text-center">No subscribers available.</p>
             ) : (
-                <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-md">
-                    {subscribers.map((sub, index) => (
+                <div className="space-y-3">
+                    {subscribers.map((sub) => (
                         <div key={sub.user_id} className="flex items-center gap-4 border-b py-3">
                             <img
                                 src={sub.avatar || "https://via.placeholder.com/50"}
@@ -30,14 +39,10 @@ const SubscribersPage = () => {
                     ))}
                 </div>
             )}
-
-            <button
-                className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
-                onClick={() => navigate(-1)}
-            >
-                Go Back
-            </button>
         </div>
+    </div>
+    
+
     );
 };
 

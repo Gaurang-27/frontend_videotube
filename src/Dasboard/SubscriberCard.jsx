@@ -28,27 +28,33 @@ const SubscriberCard = () => {
         fetchSubscribers();
     }, [user]);
 
-    const handeclick = function(){
+    const handeclick = function () {
         console.log(subs)
-        navigate(`/account-dashboard/subscriber-list`, {state : subs.subscribers})
+        navigate(`/account-dashboard/subscriber-list`, { state: subs.subscribers })
     }
 
     return (
-        <div className="bg-white shadow-lg rounded-2xl p-6 w-64 text-center border border-gray-200">
-            <h2 className="text-2xl font-semibold text-gray-700">Subscribers</h2>
-            
+        <div className="min-h-[310px] bg-[rgb(28,28,28)] shadow-[0px_0px_10px_rgba(0,0,0,0.2)] rounded-xl p-8 w-96 text-center flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-gray-300">Subscribers</h2>
+
             {loading ? (
-                <p className="text-gray-500">Loading...</p>
+                <p className="text-gray-500 mt-4">Loading...</p>
             ) : error ? (
-                <p className="text-red-500">{error}</p>
+                <p className="text-red-500 mt-4">{error}</p>
             ) : (
-                <p className="text-4xl font-bold text-blue-600 mt-2">{subs.subscribers.length}</p>
+                <p className="text-5xl font-extrabold text-blue-600 mt-4">{subs.subscribers.length}</p>
             )}
 
-            <p className="text-gray-500">Total Subscribers</p>
+            <p className="text-gray-500 mt-1 text-lg">Total Subscribers</p>
 
-            <button onClick={handeclick}>See subscribers</button>
+            <button
+                onClick={handeclick}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+            >
+                See Subscribers
+            </button>
         </div>
+
     );
 };
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const LoginUser = () => {
 
@@ -79,6 +80,11 @@ const LoginUser = () => {
         Login
       </button>
     </form>
+    <div className="flex items-center space-x-2  pt-4 pl-1 ">
+      <p className="text-white">Don't have an account?</p>
+      <NavLink to='/register' className='text-blue-500'>Register</NavLink>
+    </div>
+
   </div>
 </div>
 

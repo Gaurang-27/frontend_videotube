@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import SubscribeButton from "../Usercontrols/SubscribeButton";
+import { useNavigate } from "react-router-dom";
 
 const ChannelVideos = function(){
     
@@ -11,6 +12,7 @@ const ChannelVideos = function(){
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [video, setvideo] =useState({});
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +31,9 @@ const ChannelVideos = function(){
         fetchData();
     }, [user_id]);
 
-
+    const handleClick = function(element){
+        navigate(`/${element.video_id}`, {state : element})
+    }
     // const [videoUrls, setVideoUrls] = useState([]); // Store extracted URLs
 
     // useEffect(() => {
