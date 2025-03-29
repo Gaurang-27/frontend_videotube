@@ -35,10 +35,10 @@ function UserVideos() {
     if (error) return <p>{error}</p>;
 
     return (
-      <div className="flex justify-center w-full pt-20">
-      <div className="pt-6">
+      <div className="pl-15 pr-10 pt-20 flex justify-start w-full">
+      <div className="w-full pr-4 pt-6">
           {/* Responsive Grid: 4 columns on large screens, 2 on medium, 1 on small */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
               {videos.length > 0 ? (
                   videos.map((video, index) => (
                       <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
@@ -46,10 +46,9 @@ function UserVideos() {
                               onClick={() => handleClick(video)}
                               src={video.thumbnail_url}
                               alt={`Thumbnail ${index + 1}`}
-                              className="w-full h-48 object-cover rounded-md cursor-pointer transition-transform duration-300 hover:scale-105"
+                              className="w-full h-48 object-contain rounded-md cursor-pointer transition-transform duration-300 hover:scale-105 bg-black"
                           />
                           <h3 className="text-lg font-medium mt-2 text-white">{video.title}</h3>
-                          {/* ✅ Pass handleDeleteSuccess to DeleteVideo */}
                           <DeleteVideo videoId={video.video_id} onDeleteSuccess={handleDeleteSuccess} />
                       </div>
                   ))

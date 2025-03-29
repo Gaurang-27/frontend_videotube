@@ -59,7 +59,7 @@ const ChannelVideos = function(){
                     onClick={() => handleClick(element)}
                     src={element.thumbnail_url}
                     alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-48 object-cover rounded-md cursor-pointer transition-transform duration-300 hover:scale-105"
+                    className="w-full h-48 object-contain rounded-md cursor-pointer transition-transform duration-300 hover:scale-105 bg-black"
                   />
                   <h3 className="text-lg font-medium mt-2 text-white">{element.title}</h3>
                 </div>
