@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import DeletePlaylistButton from "../Playlist/DeletePlaylistButton";
 
 const SubsBar = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -49,6 +50,11 @@ const SubsBar = () => {
 
   const toggleSection = (section) => {
     setOpenSection((prev) => (prev === section ? null : section));
+  };
+
+  const handleDeleteSuccess = (deletedId) => {
+    // remove from state or refetch
+    setPlaylists(prev => prev.filter(p => p.playlist_id !== deletedId));
   };
 
   if (loading) return <p>Loading...</p>;
@@ -111,18 +117,27 @@ const SubsBar = () => {
             <ul className="space-y-3 mt-3 overflow-y-auto custom-scroll">
               {playlists.map((playlists) => (
                 <li key={playlists.playlist_id}>
+                <div className="flex items-center justify-between bg-gray-700 hover:bg-gray-600 rounded-lg px-3 py-2 transition-colors duration-300">
                   <NavLink
                     to={`/playlist/${playlists.playlist_id}`}
                     className={({ isActive }) =>
-                      `block px-3 py-2 rounded-lg transition-colors duration-300 ${isActive
-                        ? "bg-blue-600 text-white font-bold"
-                        : "bg-gray-700 hover:bg-gray-600"
+                      `flex-1 font-medium ${
+                        isActive
+                          ? "text-white font-bold"
+                          : "text-gray-200 hover:text-white"
                       }`
                     }
                   >
                     {playlists.name}
                   </NavLink>
-                </li>
+              
+                  <DeletePlaylistButton
+                    playlistId={playlists.playlist_id}
+                    onDeleteSuccess={handleDeleteSuccess}
+                  />
+                </div>
+              </li>
+              
               ))}
             </ul>
           )

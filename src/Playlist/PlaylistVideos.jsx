@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import SubscribeButton from "../Usercontrols/SubscribeButton";
 import { useNavigate } from "react-router-dom";
+import RemoveVideo from "./RemoveVideo";
 
 const PlaylistVideos = ()=>{
     const {playlist_id } = useParams();
@@ -33,6 +34,11 @@ const PlaylistVideos = ()=>{
     const handleClick = function(element){
         navigate(`/${element.video_id}`, {state : element})
     }
+
+    const handleDeleteSuccess = (deletedVideoId) => {
+        setvideo((prevVideos) => prevVideos.filter(video => video.video_id !== deletedVideoId));
+    };
+
     if(error) return <p>{error}</p>
 
     return(
@@ -49,6 +55,7 @@ const PlaylistVideos = ()=>{
                     className="w-full h-48 object-contain rounded-md cursor-pointer transition-transform duration-300 hover:scale-105 bg-black"
                   />
                   <h3 className="text-lg font-medium mt-2 text-white">{element.title}</h3>
+                  <RemoveVideo videoId={element.video_id} onDeleteSuccess={handleDeleteSuccess}/>
                 </div>
               ))
             ) : (

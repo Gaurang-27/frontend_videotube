@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import DeletePlaylistButton from "./DeletePlaylistButton";
 
 const PlaylistPage = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -13,7 +14,7 @@ const PlaylistPage = () => {
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
 
-  const [exist,setExist] = useState(false)
+  const [exist, setExist] = useState(false)
 
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const PlaylistPage = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/playlist/add-video-to-playlist?video_id=${video_id}&playlist_id=${playlistId}`, {}, { withCredentials: true });
 
-      if(response.data.statusCode.exist){
+      if (response.data.statusCode.exist) {
         setMessage("Video already exist in this playlist")
         setTimeout(() => {
           setMessage("")
@@ -70,7 +71,7 @@ const PlaylistPage = () => {
     try {
       await axios.post(
         `${import.meta.env.VITE_BASE_URL_BACKEND}/playlist/create-playlist`,
-        { name: newPlaylistName , description:desc},
+        { name: newPlaylistName, description: desc },
         { withCredentials: true }
       );
       setNewPlaylistName("");
@@ -89,6 +90,11 @@ const PlaylistPage = () => {
         setMessage("")
       }, 1500);
     }
+  };
+
+  const handleDeleteSuccess = (deletedId) => {
+    // remove from state or refetch
+    setPlaylists(prev => prev.filter(p => p.playlist_id !== deletedId));
   };
 
   return (
@@ -143,14 +149,24 @@ const PlaylistPage = () => {
           ) : (
             <div className="space-y-2 mb-4 max-h-100 overflow-y-auto mt-6">
               {playlists.map((playlist) => (
-                <button
+                <div
                   key={playlist.playlist_id}
-                  onClick={() => addToPlaylist(context, playlist.playlist_id)}
-                  className="w-full px-4 py-2 text-left rounded hover:bg-gray-100 bg-gray-50 border border-gray-200"
+                  className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded px-4 py-2 mb-2 hover:bg-gray-100 transition"
                 >
-                  {playlist.name}
-                </button>
+                  <button
+                    onClick={() => addToPlaylist(context, playlist.playlist_id)}
+                    className="text-left text-gray-800 font-medium w-full"
+                  >
+                    {playlist.name}
+                  </button>
+
+                  <DeletePlaylistButton
+                    playlistId={playlist.playlist_id}
+                    onDeleteSuccess={handleDeleteSuccess}
+                  />
+                </div>
               ))}
+
             </div>
           )}
         </div>
