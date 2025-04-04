@@ -63,13 +63,14 @@ const LikeDislike = ({ video_id }) => {
 
     try {
       const newReaction = type;
+      setReaction(newReaction === reaction ? null : type);
       await axios.post(
         `${import.meta.env.VITE_BASE_URL_BACKEND}/reaction/toggle-reaction?video_id=${video_id}&reaction_type=${newReaction}`,
         {},
         { withCredentials: true }
       );
       
-      setReaction(newReaction === reaction ? null : type);
+      
       //setLikeCount(0);
       //setDislikeCount(0)
       //setLikeCount((prev) => (newReaction === "like" ? prev + 1 : prev - 1));
