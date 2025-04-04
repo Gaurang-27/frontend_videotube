@@ -15,7 +15,6 @@ const SubscriberCard = () => {
         const fetchSubscribers = async () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/subs/subscriber-list/${user.user_id}`);
-                // Replace with actual API route
                 setSubs(response.data.statusCode);
             } catch (err) {
                 setError("Failed to load subscribers");
@@ -29,7 +28,7 @@ const SubscriberCard = () => {
     }, [user]);
 
     const handeclick = function () {
-        console.log(subs)
+        //console.log(subs)
         navigate(`/account-dashboard/subscriber-list`, { state: subs.subscribers })
     }
 

@@ -5,7 +5,7 @@ const SubscribersPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const subscribers = location.state || []; // Retrieve subscribers list
-    console.log(subscribers)
+    //console.log(subscribers)
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">

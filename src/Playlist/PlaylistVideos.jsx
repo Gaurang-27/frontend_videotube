@@ -5,31 +5,30 @@ import { NavLink } from "react-router-dom";
 import SubscribeButton from "../Usercontrols/SubscribeButton";
 import { useNavigate } from "react-router-dom";
 
-const ChannelVideos = function(){
-    
-    const {user_id } = useParams();
+const PlaylistVideos = ()=>{
+    const {playlist_id } = useParams();
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const [video, setvideo] =useState({});
+    const [video, setvideo] =useState([]);
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/videos/userid/${user_id}`,{withCredentials: true});
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/playlist/get-playlist-byId/${playlist_id}`,{withCredentials: true});
 
-                console.log(response.data)
+                //console.log(response.data)
                 setData(response.data);
                 setvideo(response.data.statusCode)
-                console.log(response.data.statusCode)
+                //console.log(response.data.statusCode)
             } catch (err) {
                 setError(err.message);
             }
         };
 
         fetchData();
-    }, [user_id]);
+    }, [playlist_id]);
 
     const handleClick = function(element){
         navigate(`/${element.video_id}`, {state : element})
@@ -61,4 +60,4 @@ const ChannelVideos = function(){
     )
 }
 
-export default ChannelVideos
+export default PlaylistVideos

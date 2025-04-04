@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Getvideo from "../Getvideos/Getvideo";
 import { NavLink, Outlet } from "react-router-dom";
-import SubsBar from "./SubsBar";
+import SubsBar from "./Navbar";
 import { useSelector } from "react-redux";
 
 
