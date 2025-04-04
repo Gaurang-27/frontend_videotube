@@ -42,9 +42,9 @@ const PlaylistVideos = ()=>{
     if(error) return <p>{error}</p>
 
     return(
-        <div className="pr-14 pt-20 flex justify-end w-full">
-        <div className="w-3/4 pr-4 pt-6">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="px-3 flex justify-center w-full">
+        <div className="w-full pr-4 pt-6">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {video.length > 0 ? (
               video.map((element, index) => (
                 <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
